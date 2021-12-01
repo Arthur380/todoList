@@ -1,0 +1,16 @@
+<div class="view">
+  <input (click)="update.emit(data)"
+    class = "toggle"
+          type  = "checkbox"
+          name  = "done"
+         [checked]="data.isDone"
+  />
+  <label class = "texte">{{data.label}}</label>
+  <button (click)="remove.emit(data)" class="destroy"></button>
+</div>
+<form>
+  <input  #newTextInput
+          name      = "newTextInput"
+          class     = "edit"
+  />
+</form>

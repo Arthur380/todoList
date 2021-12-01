@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 export interface TodoItem {
   readonly label: string;
@@ -18,7 +18,7 @@ let idItem = 0;
   providedIn: 'root'
 })
 export class TodolistService {
-  private current: TodoList = {label: 'MIAGE', items: [] };
+  private current: TodoList = {label: 'MA TODO', items: [] };
   private subj = new BehaviorSubject<TodoList>(this.current);
   readonly observable = this.subj.asObservable();
   private previous: TodoList[] = [];
@@ -47,6 +47,14 @@ export class TodolistService {
     const L = this.subj.getValue();
     const NL = {...L, items: L.items.filter(item => items.indexOf(item) === -1 ) };
     this.subj.next( NL );
+    return this;
+  }
+
+  removeAll(): this {
+    console.log('in loop');
+    const L = this.subj.getValue();
+    const NL = {...L, items: [] };
+    this.subj.next(NL);
     return this;
   }
 

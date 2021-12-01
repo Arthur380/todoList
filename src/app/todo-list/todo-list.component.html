@@ -1,9 +1,9 @@
-<section class="todoapp" *ngIf="getTodoList() | async as TDL">
+<section class="todoapp" *ngIf="obsTodoList | async as TDL">
   <header class="header">
     <h1>{{TDL.label}}</h1> <!-- Le label de la liste -->
-    <form (ngSubmit)="appendInTodoList(newLabel.value)">
-      <input #newLabel
-             name        = "newTodoInput"
+    <form (ngSubmit)="append(newLabel.value)" >
+      <input  #newLabel
+	      name        = "newTodoInput"
               class       = "new-todo"
               placeholder = "Que faire?"
               autofocus #lab/>
@@ -16,10 +16,13 @@
     />
     <label for="toggleAll">Mark all as complete</label>
     <ul class="todo-list">
-      <li *ngFor="let item of TDL.items">
-        <app-todo-item [data]="item"></app-todo-item>
-      </li>
       <!-- Inclure les todoitem ici (dans des balises li) -->
+      <li *ngFor="let item of TDL.items" >
+	<app-todo-item [data]="item" [class.editing]="monItem.isEditing"
+                 (remove)="delete(item)"
+                 (update)="updateItem(item,{isDone: !item.isDone})"
+                 #monItem></app-todo-item>
+      </li>
     </ul>
   </section>
   <footer class="footer">
@@ -35,6 +38,12 @@
         <a class="filterCompleted">Complétés</a>
       </li>
     </ul>
-    <button class="clear-completed">Supprimer cochées</button>
+
+
+  </footer>
+  <footer class="footer">
+  <button class="clear-completed" style="font-size: 12px" (click)="deleteAll()">Tous supprimer</button>
+
+  <button class="clear-completed" style="margin-right:30px;font-size: 12px">Supprimer cochées</button>
   </footer>
 </section>
