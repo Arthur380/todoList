@@ -13,11 +13,11 @@ export class AppComponent {
   constructor(private TDLS: TodolistService) {
     /* Ajoutez un paramètre de type TodolistService au constructeur */
   }
-  
+
   get obsTodoList(): Observable<TodoList> {
     return this.TDLS.observable;
   }
-  
+
   append(label: string): void {
     this.TDLS.append(label);
   }

@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { TodoItem } from '../todolist.service';
+import {Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
+import {TodoItem, TodolistService} from '../todolist.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -8,17 +8,32 @@ import { TodoItem } from '../todolist.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoItemComponent implements OnInit {
-
+  private editing = false;
   @Input () data!: TodoItem;
   @Output() update = new EventEmitter<Partial<TodoItem>>();
   @Output() remove = new EventEmitter<TodoItem>();
-  constructor() {
+  @ViewChild('newTextInput') newTextInput!: ElementRef<HTMLInputElement>;
+
+  constructor(private TDLS: TodolistService) {
   }
 
   ngOnInit(): void {
   }
-  get isEditing(): boolean{
-    return true;
+  get getEditing(): boolean{
+    return this.editing;
+  }
+
+  set isEditing(e: boolean) {
+    this.editing = e;
+    if (e) {
+      requestAnimationFrame(
+        () => this.newTextInput.nativeElement.focus()
+      );
+    }
+  }
+
+  updateItem(item: TodoItem, u: Partial<TodoItem>): void {
+    this.TDLS.update(u, item);
   }
 
 }

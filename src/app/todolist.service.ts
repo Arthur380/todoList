@@ -50,8 +50,17 @@ export class TodolistService {
     return this;
   }
 
+  removeChecked(): this {
+    const L = this.subj.getValue();
+    for (let i = 0; i < L.items.length; i++){
+      if ( L.items[i].isDone){
+        this.remove( L.items[i]);
+      }
+    }
+    return this;
+  }
+
   removeAll(): this {
-    console.log('in loop');
     const L = this.subj.getValue();
     const NL = {...L, items: [] };
     this.subj.next(NL);
@@ -67,6 +76,12 @@ export class TodolistService {
       this.remove(...items);
     }
     return this;
+  }
+
+  updateAll(isChecked: boolean): void {
+      for (let i = 0; this.subj.getValue().items.length; i++){
+        this.update(this.subj.getValue().items[i], {isDone: isChecked, label: this.subj.getValue().items[i].label, id: this.subj.getValue().items[i].id});
+      }
   }
 
   undo(): this {
