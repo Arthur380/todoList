@@ -98,6 +98,14 @@ export class TodolistService {
     return this;
   }
 
+  updateLabelTodoList(newLabel: string): this{
+    const L: TodoList = this.subj.getValue();
+    const NL: TodoList = {label: newLabel, items: L.items };
+    this.subj.next( NL );
+    return this;
+  }
+
+
   private managePersistency() {
     const str = localStorage.getItem('TDL_L3_MIAGE');
     if (str && str !== tdlToString(this.current) ) {

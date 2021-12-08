@@ -12,6 +12,7 @@ import { TodoItem, TodoList, TodolistService } from '../todolist.service';
 
 export class TodoListComponent implements OnInit {
   private filter = 'all';
+  private editLabel = false;
 
   constructor(private TDLS: TodolistService) {
   }
@@ -23,8 +24,13 @@ export class TodoListComponent implements OnInit {
     this.filter = filter;
   }
 
+  getFilter(): string{
+    return this.filter;
+  }
+
   getItems(items: TodoItem[]): TodoItem[]{
-    return items.filter(item => this.filter === 'all' ? item : this.filter === 'active' ? (!item.isDone ? item : null) : this.filter === 'ended' ? (item.isDone ? item : null) : null);
+    // item => function (creer une fonction qui retourne mes items correspondant a mon filtre)
+    return items.filter(item => this.filter === 'all' ? item : (this.filter === 'active' ? (!item.isDone ? item : null) : this.filter === 'ended' ? (item.isDone ? item : null) : null));
   }
 
   get obsTodoList(): Observable<TodoList> {
@@ -59,9 +65,36 @@ export class TodoListComponent implements OnInit {
     this.TDLS.redo();
   }
 
-  updateAll(isChecked: boolean): void{
-    this.TDLS.updateAll(isChecked);
+  updateAll(items: any): void{
+    let selected = false;
+    for (const item of items){
+      if (item.isDone === true){
+        selected = true;
+        break;
+      }
+    }
+
+    for (const item of items){
+      this.TDLS.update({isDone: selected}, item );
+    }
   }
 
+  getRestant(items: any): number {
+    let i = 0;
+    for (const item of items) {
+      if (!item.isDone) {
+        i++;
+      }
+    }
+    return i;
+  }
 
+  setEditable(editable: boolean): void{
+    this.editLabel = editable;
+  }
+
+  updateLabelTodoList(label: string): void{
+    this.TDLS.updateLabelTodoList(label);
+    this.editLabel = !this.editLabel;
+  }
 }

@@ -33,7 +33,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/annyang.min.js"
+            ]
           },
           "configurations": {
             "production": {

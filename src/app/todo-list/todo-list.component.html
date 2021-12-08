@@ -1,9 +1,16 @@
 <section class="todoapp" *ngIf="obsTodoList | async as TDL">
   <header class="header">
-    <h1>{{TDL.label}}</h1> <!-- Le label de la liste -->
+    <h1 *ngIf="!editLabel" (dblclick)="setEditable(!editLabel)">{{TDL.label}}</h1>
+    <form *ngIf="editLabel" (ngSubmit)="updateLabelTodoList(todoList.value)" (dblclick)="setEditable(!editLabel)" (focusout)="setEditable(!editLabel)">
+      <input  #todoList
+              name      = "newTextInput"
+              class     = "edit"
+              [ngModel]="TDL.label"
+      />
+    </form>
     <form (ngSubmit)="append(newLabel.value); newLabel.value=''" >
       <input  #newLabel
-	      name        = "newTodoInput"
+              name        = "newTodoInput"
               class       = "new-todo"
               placeholder = "Que faire?"
               autofocus #lab/>
@@ -13,21 +20,21 @@
     <input  class="toggle-all"
             type="checkbox"
             name="toggleAll"
-            (change)="updateAll(!TDL.items[0].isDone)"
+            (change)="updateAll(TDL.items)"
     />
     <label for="toggleAll">Mark all as complete</label>
     <ul class="todo-list">
       <!-- Inclure les todoitem ici (dans des balises li) -->
-      <li *ngFor="let item of getItems(TDL.items);">
-	<app-todo-item [data]="item"
-                 (remove)="delete(item)"
-                 (update)="updateItem(item,{isDone: !item.isDone})"
-                 #monItem></app-todo-item>
+      <li *ngFor="let item of getItems(TDL.items)">
+        <app-todo-item [data]="item"
+                       (remove)="delete(item)"
+                       (update)="updateItem(item,{isDone: !item.isDone})"
+                       #monItem></app-todo-item>
       </li>
     </ul>
   </section>
   <footer class="footer">
-    <span class="todo-count"><strong>{{TDL.items.length}}</strong> restantes</span>
+    <span class="todo-count"><strong>{{getRestant(TDL.items)}}</strong> restantes</span>
     <ul class="filters">
       <li (click)="setFilter('all')">
         <a class="filterAll">Tous</a>
@@ -43,9 +50,9 @@
 
   </footer>
   <footer class="footer">
-  <button class="clear-completed" style="font-size: 12px" (click)="deleteAll()">Tous supprimer</button>
+    <button class="clear-completed" style="font-size: 12px" (click)="deleteAll()">Tous supprimer</button>
 
-  <button class="clear-completed" style="margin-right:30px;font-size: 12px" (click)="removeChecked()">Supprimer cochées</button>
+    <button class="clear-completed" style="margin-right:30px;font-size: 12px" (click)="removeChecked()">Supprimer cochées</button>
 
     <button class="clear-completed" style="margin-right:175px;font-size: 12px" (click)="undo()">Précédent</button>
     <button class="clear-completed" style="margin-right:30px;font-size: 12px" (click)="redo()">Suivant</button>
