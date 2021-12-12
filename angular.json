@@ -34,7 +34,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/js/annyang.min.js"
+              "src/assets/annyang.min.js"
             ]
           },
           "configurations": {

@@ -12,7 +12,7 @@ import { TodoItem, TodoList, TodolistService } from '../todolist.service';
 
 export class TodoListComponent implements OnInit {
   private filter = 'all';
-  private editLabel = false;
+  editLabel = false;
 
   constructor(private TDLS: TodolistService) {
   }
@@ -28,9 +28,9 @@ export class TodoListComponent implements OnInit {
     return this.filter;
   }
 
-  getItems(items: TodoItem[]): TodoItem[]{
-    // item => function (creer une fonction qui retourne mes items correspondant a mon filtre)
-    return items.filter(item => this.filter === 'all' ? item : (this.filter === 'active' ? (!item.isDone ? item : null) : this.filter === 'ended' ? (item.isDone ? item : null) : null));
+  getItems(items: any): any{
+    // tslint:disable-next-line:max-line-length
+    return items.filter((item: any) => this.filter === 'all' ? item : (this.filter === 'active' ? (!item.isDone ? item : null) : this.filter === 'ended' ? (item.isDone ? item : null) : null));
   }
 
   get obsTodoList(): Observable<TodoList> {

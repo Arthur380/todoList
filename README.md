@@ -1,27 +1,45 @@
-# PWA - TP3 - Todolist Angular
+# Liste des fonctions utilisables pour la TodoList
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+## Ajout d'un item
 
-## Development server
+Il est possible d'ajouter un item en cliquant sur la zone de texte et en appuyant sur la touche entrer pour valider le choix .
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Suppression d'un item
 
-## Code scaffolding
+Il est possible de supprimer un item simplement en cliquant sur la croix rouge a droite de l'item.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Suppression des items selectionnés
 
-## Build
+Pour supprimer les items selectionnés il suffit de cliquer sur le bouton 'Supprimer cochés'
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Supprimer tous les items
 
-## Running unit tests
+Pour supprimer tous les items il vous faudra appuyer sur le bouton 'Tout supprimer'
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Cocher un item
 
-## Running end-to-end tests
+Cliquez sur le rond vide sur la partie gauche d'un item pour le considéré comme déja fait
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Editer un item
 
-## Further help
+En double cliquant sur un item il est possible de changer son contenu.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Nombre d'items restants
+
+En bas de la liste on affiche le nombre d'item restant à accomplir
+
+## Les filtres
+
+Il existe 3 genre de filtres pour la liste, le filtre par défaut 'Tous' qui affiche tous les items de la liste.
+Le filtre 'Actifs' qui affiche les items non cochés.
+Le filtre 'Complétés' qui affiche les items cochés.
+
+## Suivant / Précédent
+
+En cas de mauvaise manipulation il est possible de revenir en arrière en cliquant sur le bouton précédent, et revenir à l'état en cliquant sur suivant.
+
+## Changer le nom de la liste
+
+En double cliquant sur le nom de la liste tout en haut, il est possible de modifier son nom.
+#
+Ce projet à été réalisé par Arthur RAIMBERT
