@@ -45,11 +45,14 @@
       <li (click)="setFilter('ended')">
         <a class="filterCompleted">Complétés</a>
       </li>
+      <button>
+        <app-voice-detect></app-voice-detect>
+      </button>
     </ul>
-
 
   </footer>
   <footer class="footer">
+
     <button class="clear-completed" style="font-size: 12px" (click)="deleteAll()">Tout supprimer</button>
 
     <button class="clear-completed" style="margin-right:30px;font-size: 12px" (click)="removeChecked()">Supprimer cochés</button>
