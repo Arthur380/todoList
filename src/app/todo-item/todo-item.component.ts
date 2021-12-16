@@ -9,7 +9,7 @@ import {TodoItem, TodolistService} from '../todolist.service';
 })
 export class TodoItemComponent implements OnInit {
   private editing = false;
-  @Input () data!: TodoItem;
+  @Input() data!: TodoItem;
   @Output() update = new EventEmitter<Partial<TodoItem>>();
   @Output() remove = new EventEmitter<TodoItem>();
   @ViewChild('newTextInput') newTextInput!: ElementRef<HTMLInputElement>;
@@ -32,8 +32,8 @@ export class TodoItemComponent implements OnInit {
     }
   }
 
-  updateItem(item: TodoItem, u: Partial<TodoItem>): void {
-    this.TDLS.update(u, item);
+  get item(): TodoItem{
+    return this.data;
   }
 
 }

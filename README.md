@@ -1,3 +1,9 @@
+# Installer et executer la todo list
+
+Pour installer et lancer le projet todo list il faudra aller dans le projet puis executer les commandes suivantes :
+* npm install
+* npm start
+
 # Liste des fonctions utilisables pour la TodoList
 
 ## Ajout d'un item

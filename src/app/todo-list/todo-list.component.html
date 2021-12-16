@@ -1,7 +1,7 @@
 <section class="todoapp" *ngIf="obsTodoList | async as TDL">
   <header class="header">
     <h1 *ngIf="!editLabel" (dblclick)="setEditable(!editLabel)">{{TDL.label}}</h1>
-    <form *ngIf="editLabel" (ngSubmit)="updateLabelTodoList(todoList.value)" (dblclick)="setEditable(!editLabel)" (focusout)="setEditable(!editLabel)">
+    <form *ngIf="editLabel" (ngSubmit)="updateLabelTodoList(todoList.value); setEditable(false)" (dblclick)="setEditable(!editLabel)" (focusout)="setEditable(false)">
       <input  #todoList
               name      = "newTextInput"
               class     = "edit"
@@ -57,8 +57,10 @@
 
     <button class="clear-completed" style="margin-right:30px;font-size: 12px" (click)="removeChecked()">Supprimer cochés</button>
 
-    <button class="clear-completed" style="margin-right:175px;font-size: 12px" (click)="undo()">Précédent</button>
-    <button class="clear-completed" style="margin-right:30px;font-size: 12px" (click)="redo()">Suivant</button>
+    <button class="clear-completed" style="margin-right:175px;font-size: 12px" (click)="redo()">Suivant</button>
+    <button class="clear-completed" style="margin-right:30px;font-size: 12px" (click)="undo()">Précédent</button>
 
   </footer>
+
+  <app-qr-code *ngIf="TDL" [dataqr]="TDL"></app-qr-code>
 </section>

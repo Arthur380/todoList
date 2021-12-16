@@ -29,6 +29,10 @@ export class TodolistService {
     this.manageUndoRedo();
   }
 
+  getAll(): TodoList {
+    return this.subj.getValue();;
+  }
+
   append(...labels: Readonly<string[]>): this {
     const L: TodoList = this.subj.getValue();
     this.subj.next( {

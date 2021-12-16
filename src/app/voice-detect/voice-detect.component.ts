@@ -1,6 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, NgZone } from '@angular/core';
+import { Component, ChangeDetectionStrategy, NgZone } from '@angular/core';
 import {TodolistService} from '../todolist.service';
-import {query} from '@angular/animations';
 
 declare const annyang: any;
 
@@ -11,7 +10,7 @@ declare const annyang: any;
   styleUrls: ['./voice-detect.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VoiceDetectComponent implements OnInit {
+export class VoiceDetectComponent {
 
   voiceActiveSectionDisabled = true;
   voiceActiveSectionError = false;
@@ -21,9 +20,6 @@ export class VoiceDetectComponent implements OnInit {
   voiceTextOld: any;
 
   constructor(private ngZone: NgZone, private TDLS: TodolistService){}
-
-  ngOnInit(): void {
-  }
 
   initializeVoiceRecognitionCallback(): void {
     annyang.addCallback('error', (err: any) => {
@@ -53,15 +49,14 @@ export class VoiceDetectComponent implements OnInit {
 
       const queryText: any = userSaid[0];
 
+      annyang.abort();
+
       this.voiceText = queryText;
       if (this.voiceText !== null && this.voiceText !== undefined && this.voiceText !== this.voiceTextOld){
         this.voiceTextOld = this.voiceText;
         this.TDLS.append(queryText);
       }
       this.closeVoiceRecognition();
-    /*  this.ngZone.run(() => this.voiceActiveSectionListening = false);
-      this.ngZone.run(() => this.voiceActiveSectionSuccess = true); */
-
     });
   }
 
@@ -89,7 +84,6 @@ export class VoiceDetectComponent implements OnInit {
     this.voiceActiveSectionSuccess = false;
     this.voiceActiveSectionListening = false;
     this.voiceText = undefined;
-    console.log('salut close');
     if (annyang){
       annyang.abort();
     }

@@ -1,6 +1,6 @@
 <li [class.editing]="getEditing" (dblclick)="isEditing=!getEditing" (focusout)="isEditing=!getEditing" >
 <div class="view" >
-  <input (click)="update.emit(data)"
+  <input (click)="update.emit(item)"
     class = "toggle"
           type  = "checkbox"
           name  = "done"
@@ -9,7 +9,7 @@
   <label [class.completed]="data.isDone">{{data.label}}</label>
   <button (click)="remove.emit(data)" class="destroy"></button>
 </div>
-<form (ngSubmit)="updateItem(data,{label: newTextInput.value})">
+<form (ngSubmit)="update.emit(data)">
   <input  #newTextInput
           name      = "newTextInput"
           class     = "edit"
