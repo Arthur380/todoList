@@ -14,7 +14,7 @@ export class TodoItemComponent implements OnInit {
   @Output() remove = new EventEmitter<TodoItem>();
   @ViewChild('newTextInput') newTextInput!: ElementRef<HTMLInputElement>;
 
-  constructor(private TDLS: TodolistService) {
+  constructor() {
   }
 
   ngOnInit(): void {

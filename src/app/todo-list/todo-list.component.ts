@@ -24,7 +24,7 @@ export class TodoListComponent implements OnInit {
     this.filter = filter;
   }
 
-  getFilter(): string{
+  get filterItems(): string{
     return this.filter;
   }
 
@@ -75,7 +75,7 @@ export class TodoListComponent implements OnInit {
     }
 
     for (const item of items){
-      this.TDLS.update({isDone: selected}, item );
+      this.TDLS.update({isDone: !selected}, item );
     }
   }
 

@@ -19,7 +19,7 @@
   <section class="main">
     <input  class="toggle-all"
             type="checkbox"
-            name="toggleAll"
+            id="toggleAll"
             (change)="updateAll(TDL.items)"
     />
     <label for="toggleAll">Mark all as complete</label>
@@ -28,7 +28,7 @@
       <li *ngFor="let item of getItems(TDL.items)">
         <app-todo-item [data]="item"
                        (remove)="delete(item)"
-                       (update)="updateItem(item,{isDone: !item.isDone})"
+                       (update)="updateItem(item,{isDone: $event.label != item.label ? item.isDone : !item.isDone, label: $event.label})"
                        #monItem></app-todo-item>
       </li>
     </ul>
@@ -36,13 +36,13 @@
   <footer class="footer">
     <span class="todo-count"><strong>{{getRestant(TDL.items)}}</strong> restantes</span>
     <ul class="filters">
-      <li (click)="setFilter('all')">
+      <li [class.used]='filterItems === "all"' class="cursor" (click)="setFilter('all')">
         <a class="filterAll">Tous</a>
       </li>
-      <li (click)="setFilter('active')">
+      <li [class.used]='filterItems === "active"' class="cursor" (click)="setFilter('active')">
         <a class="filterActives">Actifs</a>
       </li>
-      <li (click)="setFilter('ended')">
+      <li [class.used]='filterItems === "ended"' class="cursor" (click)="setFilter('ended')">
         <a class="filterCompleted">Complétés</a>
       </li>
       <button>

@@ -9,7 +9,7 @@
   <label [class.completed]="data.isDone">{{data.label}}</label>
   <button (click)="remove.emit(data)" class="destroy"></button>
 </div>
-<form (ngSubmit)="update.emit(data)">
+<form (ngSubmit)="update.emit({label: newTextInput.value})">
   <input  #newTextInput
           name      = "newTextInput"
           class     = "edit"

@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, NgZone } from '@angular/core';
-import {TodolistService} from '../todolist.service';
+import {Component, ChangeDetectionStrategy, NgZone, Output, EventEmitter} from '@angular/core';
+import {TodoItem, TodolistService} from '../todolist.service';
 
 declare const annyang: any;
 

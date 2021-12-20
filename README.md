@@ -10,6 +10,9 @@ Pour installer et lancer le projet todo list il faudra aller dans le projet puis
 
 Il est possible d'ajouter un item en cliquant sur la zone de texte et en appuyant sur la touche entrer pour valider le choix .
 
+## Ajout d'un item par reconnaissance vocale
+
+En cliquant sur l'icone micro il est possible d'ajouter un nouvel item par reconnaissance vocale
 ## Suppression d'un item
 
 Il est possible de supprimer un item simplement en cliquant sur la croix rouge a droite de l'item.
@@ -47,5 +50,14 @@ En cas de mauvaise manipulation il est possible de revenir en arrière en cliqua
 ## Changer le nom de la liste
 
 En double cliquant sur le nom de la liste tout en haut, il est possible de modifier son nom.
+
+## QR CODE
+
+Il est possible de récupérer la todo list via le qr code sous format JSON.
+
+## SELECT ALL
+
+En cliquant sur la flèche à gauche de 'Que faire ?' on peut cocher ou décocher tous les items de la liste.
+
 #
 Ce projet à été réalisé par Arthur RAIMBERT
